@@ -1,0 +1,20 @@
+[
+{
+  "model": "mmdb.source",
+  "pk": 1,
+  "fields": {
+    "created_at": "2018-08-20T00:00:00",
+    "modified_at": "2018-08-20T00:00:00",
+    "description": "",
+    "who": "A 100-character string...",
+    "sourcetype": "A 45-character string",
+    "name": "Source Name",
+    "oppt_phase": "1",
+    "processed": "1",
+    "harm_init": "1",
+    "harm_mapped": "1",
+    "loaded": "1",
+    "icfsource": "A 120-character string"
+  }
+}
+]
