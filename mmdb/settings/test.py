@@ -2,8 +2,8 @@ from .dev import *  # noqa
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": ":memory:",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": ":test_mmdb:",
     }
 }
 
