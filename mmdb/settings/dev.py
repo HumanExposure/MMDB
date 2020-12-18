@@ -1,5 +1,6 @@
 import os
 from mmdb.environment import env
+
 SITE_ID = 1
 DEBUG = True
 
@@ -16,6 +17,10 @@ DATABASES = {
         "PASSWORD": env.SQL_PASSWORD,
         "HOST": env.SQL_HOST,
         "PORT": env.SQL_PORT,
+        "OPTIONS": {
+            # Tell MySQLdb to connect with 'utf8mb4' character set
+            "charset": "utf8mb4",
+        },
     }
 }
 
@@ -59,7 +64,7 @@ TEMPLATES = [
 
 STATIC_URL = "/static/"
 
-ROOT_URLCONF = "mmdb.urls" 
+ROOT_URLCONF = "mmdb.urls"
 
 SECRET_KEY = "abc123"
 

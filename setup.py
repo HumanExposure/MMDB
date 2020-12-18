@@ -73,7 +73,7 @@ setup(
     url="https://github.com/django-json-api/django-rest-framework-json-api",
     license="BSD",
     description="A Django REST framework API adapter for the JSON API spec.",
-    long_description=read("README.rst"),
+    long_description=read("README.md"),
     author="Jerel Unruh",
     author_email="",
     packages=get_packages("rest_framework_json_api"),

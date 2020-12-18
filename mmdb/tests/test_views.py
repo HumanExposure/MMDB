@@ -25,11 +25,10 @@ from mmdb.views import SourceViewSet
 
 class TestModelViewSet(TestBase):
     def setUp(self):
-        self.source = Source.objects.create()
+        self.source = SourceFactory.create()
 
     def test_no_content_response(self):
         url = "/sources/{}".format(self.source.pk)
         response = self.client.delete(url)
         assert response.status_code == 204, response.rendered_content.decode()
         assert len(response.rendered_content) == 0, response.rendered_content.decode()
-

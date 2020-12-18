@@ -3,7 +3,15 @@ from .dev import *  # noqa
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": ":test_mmdb:",
+        "NAME": env.SQL_DATABASE,
+        "USER": env.SQL_USER,
+        "PASSWORD": env.SQL_PASSWORD,
+        "HOST": env.SQL_HOST,
+        "PORT": env.SQL_PORT,
+        "OPTIONS": {
+            # Tell MySQLdb to connect with 'utf8mb4' character set
+            "charset": "utf8mb4",
+        },
     }
 }
 
