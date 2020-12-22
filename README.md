@@ -36,6 +36,12 @@ Migrate and load the data:
     $ django-admin loaddata mmdb --settings=mmdb.settings
     $ django-admin runserver 8002 --settings=mmdb.settings
 ```
+
+Run tests:
+
+```
+django-admin testmmdb.tests --settings=mmdb.settings.test
+```
 Browse to
 * http://localhost:8002 for the list of available collections (in a non-JSONAPI format!),
 * http://localhost:8002/swagger-ui/ for a Swagger user interface to the dynamic schema view, or
