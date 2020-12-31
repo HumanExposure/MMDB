@@ -47,3 +47,55 @@ Browse to
 * http://localhost:8002/swagger-ui/ for a Swagger user interface to the dynamic schema view, or
 * http://localhost:8002/openapi for the schema view's OpenAPI specification document.
 
+
+# Run app with docker
+
+### .env settings
+
+##### Related settings
+* COMPOSE_PROJECT_NAME=mmdb
+  <br/> defines the prefix of docker container name
+* COMPOSE_FILE
+  <br/> defines the compose file to build the service
+* MMDB_BRANCH
+  <br/> defines the github branch to build from when use docker-compose.override.yaml
+* MMDB_PORT=8002
+  <br/> defines the port to run the app, defaults to 8002
+* SQL_DATABASE=mmdb
+* SQL_HOST
+* SQL_PORT
+* SQL_USER
+* SQL_PASSWORD
+
+
+##### Run with code on local dev machine and mysql on host server
+
+* COMPOSE_FILE=docker/docker-compose.yaml;docker/docker-compose.dev.override.yaml
+* SQL_HOST=host.docker.internal
+
+##### Run with code on remote github and mysql on host server
+* COMPOSE_FILE=docker/docker-compose.yaml;docker/docker-compose.override.yaml
+* SQL_HOST=host.docker.internal
+* MMDB_BRANCH=the_remote_branch_name (defaults to master)
+
+##### Run with mysql as a docker service
+* COMPOSE_FILE=docker/docker-compose.yaml;docker/docker-compose.dev.override.yaml;docker/docker-compose.mysql.override.yaml
+<br/>or</br> 
+* COMPOSE_FILE=docker/docker-compose.yaml;docker/docker-compose.override.yaml;docker/docker-compose.mysql.override.yaml
+* SQL_HOST=mysql
+
+
+### Build and run
+```
+$ docker-compose build
+$ docker-compose run
+```
+Then browse to http://localhost:8002 (or the port configured)
+
+
+### Apply db migrations
+Manually ssh to the mmdb container and run the migrate command
+```
+$ docker exec -it mmdb_mmdb_1 /bin/sh
+# django-admin migrate --settings=mmdb.settings
+```
