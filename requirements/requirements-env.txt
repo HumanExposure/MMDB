@@ -1,1 +1,2 @@
 python-dotenv>=0.10.3,<0.11
+gunicorn>=20.0.0,<20.1.0

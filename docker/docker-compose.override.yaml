@@ -1,0 +1,23 @@
+version: "3.1"
+
+services:
+  mmdb:
+    build:
+      context: https://github.com/HumanExposure/MMDB.git#${MMDB_BRANCH:-master}
+      dockerfile: docker/Dockerfile
+    image: mmdb
+    restart: unless-stopped
+    environment:
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-.epa.gov}
+      DEBUG: ${DEBUG:-false}
+      MMDB_ALLOWED_HOSTS: ${MMDB_ALLOWED_HOSTS:-.epa.gov}
+      MMDB_DEBUG: ${MMDB_DEBUG:-false}
+      MMDB_PORT: ${MMDB_PORT:-8002}
+      MMDB_SECRET_KEY: ${MMDB_SECRET_KEY}
+      SQL_DATABASE: ${SQL_DATABASE:-prod_mmdb}
+      SQL_HOST: ${SQL_HOST:--tesla.epa.gov}
+      SQL_PORT: ${SQL_PORT:-3306}
+      SQL_USER: ${SQL_USER:-dave}
+      SQL_PASSWORD: ${SQL_PASSWORD}
+      GUNICORN_OPTS: ${GUNICORN_OPTS:-}
+      MMDB_GUNICORN_OPTS: ${GUNICORN_OPTS:-}
