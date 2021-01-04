@@ -23,5 +23,5 @@ services:
           UPDATE user SET user='${SQL_USER:-root}' WHERE user='root';
           FLUSH PRIVILEGES;
         \" > /docker-entrypoint-initdb.d/init.sql \
-        && docker-entrypoint.sh --character-set-server=utf8 --ssl=0
+        && docker-entrypoint.sh --character-set-server=utf8mb4 --ssl=0
       "
