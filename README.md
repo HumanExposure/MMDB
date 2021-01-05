@@ -48,7 +48,7 @@ Browse to
 * http://localhost:8002/openapi for the schema view's OpenAPI specification document.
 
 
-# Run app with docker
+# Run App with Docker
 
 ### .env settings
 
@@ -88,7 +88,7 @@ Browse to
 ### Build and run
 ```
 $ docker-compose build
-$ docker-compose run
+$ docker-compose up
 ```
 Then browse to http://localhost:8002 (or the port configured)
 
