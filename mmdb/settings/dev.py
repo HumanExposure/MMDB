@@ -4,6 +4,11 @@ from mmdb.environment import env
 SITE_ID = 1
 DEBUG = True
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "collected_static")
+
 MEDIA_ROOT = os.path.normcase(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_URL = "/media/"
 
@@ -19,7 +24,7 @@ DATABASES = {
         "PORT": env.SQL_PORT,
         "OPTIONS": {
             # Tell MySQLdb to connect with 'utf8mb4' character set
-            "charset": "utf8mb4",
+            "charset": "utf8mb4"
         },
     }
 }
@@ -57,10 +62,56 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-            ],
+            ]
+        },
+    }
+]
+
+LOGGING = {
+    "version": 1,
+    "formatters": {
+        "console": {
+            "format": "%(asctime)s [%(levelname)s] %(message)s",
+            "datefmt": "[%d/%b/%Y %H:%M:%S]",
+            "class": "logging.Formatter",
+        },
+        "django.server": {
+            "()": "django.utils.log.ServerFormatter",
+            "format": "[{server_time}] [INFO] {message}",
+            "style": "{",
         },
     },
-]
+    "handlers": {
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "console",
+        },
+        "django.server": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "django.server",
+        },
+    },
+    "loggers": {
+        "django": {"handlers": ["console"], "level": "INFO", "propagate": False},
+        "django.server": {
+            "handlers": ["django.server"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "gunicorn.access": {
+            "level": "INFO",
+            "handlers": ["console"],
+            "propagate": False,
+        },
+        "gunicorn.error": {
+            "level": "INFO",
+            "handlers": ["console"],
+            "propagate": False,
+        },
+    },
+}
 
 STATIC_URL = "/static/"
 

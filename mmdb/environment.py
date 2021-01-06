@@ -42,6 +42,16 @@ class MetaEnv(type):
         return cls._get("MMDB_VERSION_NUMBER", default)
 
     @property
+    def GUNICORN_OPTS(cls):
+        default = ""
+        return {
+            k: v
+            for entry in cls._get("GUNICORN_OPTS", default, prefix=True).split(",")
+            if entry
+            for k, v in entry.split("=")
+        }
+
+    @property
     def SQL_DATABASE(cls):
         default = "mmdb" if cls.DEBUG else ""
         return cls._get("SQL_DATABASE", default)
