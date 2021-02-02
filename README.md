@@ -40,7 +40,7 @@ Migrate and load the data:
 Run tests:
 
 ```
-django-admin testmmdb.tests --settings=mmdb.settings.test
+django-admin test mmdb.tests --settings=mmdb.settings.test
 ```
 Browse to
 * http://localhost:8002 for the list of available collections (in a non-JSONAPI format!),
